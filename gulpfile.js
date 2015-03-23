@@ -12,6 +12,7 @@ var uglify = require('gulp-uglify');
 var replace = require('gulp-replace');
 var sass = require('gulp-sass');
 var cssmin = require('gulp-minify-css');
+var gif = require('gulp-if');
 
 
 
@@ -34,6 +35,9 @@ gulp.task('style', function(){
       notify.onError().apply(null, arguments);
       this.emit('end');
     })
+    .pipe(gif(!isWatch, cssmin({
+      compatibility: 'ie7,-selectors.ie7Hack,-properties.iePrefixHack,-properties.ieSuffixHack'
+    })))
     .pipe(gulp.dest(dir()))
     .pipe(reload({stream: true}));
 });
@@ -41,7 +45,9 @@ gulp.task('style', function(){
 gulp.task('script', function(){
   return gulp.src(['node_modules/jquery/dist/jquery.js', 'src/js/*.js'])
   .pipe(concat('bundle.js'))
-  .pipe(gulp.dest(dir()));
+  .pipe(gif(!isWatch, uglify()))
+  .pipe(gulp.dest(dir()))
+  .pipe(reload({stream: true}));
 });
 
 gulp.task('copy-staff', function(){
@@ -66,24 +72,13 @@ gulp.task('setWatch', function(){
   isWatch = true;
 });
 
-// gulp.task('deployStyle', ['style'], function(){
-//   gulp.src(buildStyleDir + '/**/app.css')
-//     .pipe(autoprefixer({
-//       browsers: ['last 2 versions', 'ie 8', 'ie 9', 'ie 7', 'ie 6']
-//     }))
-//     .pipe(cssmin({
-//       compatibility: 'ie8'
-//     }))
-//     .pipe(gulp.dest(buildStyleDir));
-// });
-
 gulp.task('clearnWatchDir', function(){
   del.sync(['watch']);
 });
 
 gulp.task('replace', function(){
   gulp.src('src/*.php')
-  .pipe(replace('BBF_STYLE_DIR', 'http://bbf.com/wp-content/themes/bbf'))
+  .pipe(replace('BBF_STYLE_DIR', '/wp-content/themes/bbf'))
   .pipe(gulp.dest(dir()));
 });
 
@@ -96,6 +91,7 @@ function dir() {
 ==========================================*/
 gulp.task('watch', ['clearnWatchDir', 'setWatch', 'script', 'style', 'copy-staff', 'replace', 'server'], function(){
   gulp.watch('src/**/*.scss', ['style']);
+  gulp.watch('src/**/*.js', ['script']);
   gulp.watch('src/**/*.php', function(){
     gulp.start(['copy-staff', 'replace', 'reload']);
   });
@@ -105,14 +101,14 @@ gulp.task('deploy', function(){
   console.log('\n deployment started at ' + new Date() + '\n');
   del.sync(['build']);
   process.env.NODE_ENV = 'production';
-  gulp.start(['script', 'deployStyle']);
+  gulp.start(['script', 'style', 'copy-staff', 'replace']);
 });
 
 gulp.task('deployTest', function(){
-  gulp.src(['src/**/*.html', 'watch/**/*.js', 'watch/**/*.css'])
+  gulp.src('build/**')
     .pipe(rsync({
-      hostname: 'test',
-      destination: '/www/op-marketing.tbcdn.cn',
+      hostname: 'aliyun',
+      destination: '/www/wordpress/wp-content/themes',
       exclude: ['node_modules/']
     }));
 });

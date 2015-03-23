@@ -1,4 +1,4 @@
-/*
+/*!
 Theme Name: bbf
 Theme URI: http://undefinedblog.com/
 Author: jasonslyvia, shuang
@@ -21,3 +21,60 @@ bbf is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, In
 
 
 .nav-box ul { padding-left:  0;}
+
+.nav-box .product-item ul {
+  z-index: 1;
+}
+
+.nav-box .product-item ul li {
+  border-bottom: 5px #fff solid;
+}
+
+.nav-box .link-placeholder {
+  display: block;
+  text-align: right;
+}
+
+.nav-box ul li a:hover{
+  color: #fff;
+}
+
+.nav-box ul li .first:hover{
+  color:#006833;
+}
+
+.product-menu {
+  position: absolute;
+  top: 40px;
+  left: -416px;
+  width: 500px;
+  height: 160px;
+  text-align: left;
+  background-color: #fff;
+  border-top: 3px solid #006833;
+  box-shadow: #555 0px 2px 4px;
+  -webkit-box-shadow: #555 0px 2px 4px;
+  -moz-box-shadow: #555 0px 2px 4px;
+  z-index: -1;
+
+  .product-section {
+    float: left;
+    margin: 10px 8px;
+
+    .title {
+      margin-bottom: 8px;
+      font: 14px/1.6 "\5FAE\8F6F\96C5\9ED1", "\9ED1\4F53", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+      color: #006833;
+    }
+
+    .sub-link {
+      a {
+        height: 20px;
+        line-height: 1.4;
+        padding: 0;
+        text-align: left;
+        color: #666;
+      }
+    }
+  }
+}

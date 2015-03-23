@@ -15,9 +15,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link href="favicon.ico" rel="shortcut icon" />
-<link rel="stylesheet" type="text/css" href="BBF_STYLE_DIR/style.css" />
-<script src="BBF_STYLE_DIR/bundle.js" type="text/javascript"></script>
-<style>.nav-box ul li ul{behavior:url('BBF_STYLE_DIR/PIE.htc');}</style>
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/bbf/style.css" />
+<script src="/wp-content/themes/bbf/bundle.js" type="text/javascript"></script>
+<style>.nav-box ul li ul{behavior:url('/wp-content/themes/bbf/PIE.htc');}</style>
 
 <?php wp_head(); ?>
 </head>

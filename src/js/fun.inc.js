@@ -65,8 +65,13 @@ $(document).ready(function(e) {
 	one_width = one_img + 20;
 	$(move_class).html($(move_class).html()+$(move_class).html()+'<div class="clear"></div>');
 
-	move_fun();
+	if (len_num > 4) {
+		move_fun();
+	}
+
 	function move_fun(){
+		if (len_num < 4)  return false;
+
 		time_clear = window.setTimeout(function(){
 			if(now_num == len_num*2-4){
 				now_num = len_num-4;
@@ -82,8 +87,7 @@ $(document).ready(function(e) {
 	}
 
 	function move_left(ic, jc, kc){
-
-		/*$(move_class).animate({marginLeft:-(one_width*kc+jc)});*/
+		if (len_num < 4)  return false;
 
 		if(ic <= one_width){
 			window.setTimeout(function(){
@@ -145,7 +149,7 @@ $(document).ready(function(e) {
 	if(con_height1 > con_height) con_height=con_height1;
 	if(con_height2 > con_height) con_height=con_height2;
 	if(con_height3 > con_height) con_height=con_height3;
-	$('.main-con-top').height(con_height);
+	$('.main-con-top').height(Math.min(con_height, 165));
 
 
 	$('.sidebar-con-left-nav ul li div strong').click(function(){
