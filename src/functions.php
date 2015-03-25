@@ -22,3 +22,16 @@ function catch_that_image($width, $height) {
   }
   return $first_img;
 }
+
+function remove_wp_open_sans() {
+    wp_deregister_style( 'open-sans' );
+    wp_register_style( 'open-sans', false );
+}
+
+add_action('wp_enqueue_scripts', 'remove_wp_open_sans');
+function remove_open_sans() {
+    wp_deregister_style( 'open-sans' );
+    wp_register_style( 'open-sans', false );
+    wp_enqueue_style('open-sans','');
+}
+add_action( 'init', 'remove_open_sans' );

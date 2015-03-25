@@ -43,6 +43,24 @@ bbf is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, In
   color:#006833;
 }
 
+.sidebar-con-left-con {
+  line-height: 1.4;
+
+  .title {
+    display: block;
+    margin-left: -14px;
+    padding-left: 8px;
+    border-left: 4px #ccc solid;
+    font-size: 14px;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+
+  div {
+    margin-bottom: 15px;
+  }
+}
+
 .product-menu {
   position: absolute;
   top: 40px;

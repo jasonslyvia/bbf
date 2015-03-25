@@ -34,7 +34,7 @@
 
   <div class="header-con">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php bloginfo( 'name' ); ?>" id="web_logo">
-      <img src="http://fpoimg.com/218x79?text=Logo Placeholder" alt="<?php bloginfo( 'name' ); ?>" title="<?php bloginfo( 'name' ); ?>" />
+      <img src="BBF_STYLE_DIR/images/logo.png" alt="<?php bloginfo( 'name' ); ?>" title="<?php bloginfo( 'name' ); ?>" />
     </a>
 
     <div class="nav-box">
@@ -62,7 +62,7 @@
                 </div>
               </div>
               <div class="product-section">
-                <h4 class="title">伺服驱动器</h4>
+                <h4 class="title">伺服驱动系统</h4>
                 <img src="http://fpoimg.com/150x50?text=Category" width="150" height="50">
                 <div class="sub-link">
                   <a href="#">单轴伺服驱动</a>
@@ -70,7 +70,7 @@
                 </div>
               </div>
               <div class="product-section">
-                <h4 class="title">主轴驱动器</h4>
+                <h4 class="title">主轴驱动系统</h4>
                 <img src="http://fpoimg.com/150x50?text=Category" width="150" height="50">
                 <div class="sub-link">
                   <a href="#">主轴驱动器</a>

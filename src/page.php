@@ -9,27 +9,29 @@
  *
  * @package bbf
  */
+get_header();
+?>
+<div class="sidebar-box">
+  <div class="sidebar-con">
+    <?php get_sidebar('page'); ?>
 
-get_header(); ?>
-
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
+    <div class="sidebar-con-right">
 			<?php while ( have_posts() ) : the_post(); ?>
+      <div class="sidebar-con-tit">
+        <?php $cat = get_category(get_query_var('cat')); ?>
+        <p>当前位置： <a href="../" title="网站首页">网站首页</a> &gt; <a href=../news/ >装修知识</a> > <a href=../news/news_5_1.html >风水指南</a></p>
+        <font class="this"><?php the_title(); ?></font>
+      </div>
+      <div class="sidebar-con-right-con">
+      	<div class="editor active" id="showtext">
+		    	<?php the_content(); ?>
+					<div class="clear"></div>
+				</div>
+      </div>
+		  <?php endwhile; ?>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
 
-				<?php get_template_part( 'content', 'page' ); ?>
-
-				<?php
-					// If comments are open or we have at least one comment, load up the comment template
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
-				?>
-
-			<?php endwhile; // end of the loop. ?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
