@@ -19,11 +19,10 @@ get_header(); ?>
 <div class="sidebar-box">
   <div class="sidebar-con">
     <?php get_sidebar(); ?>
-    
+    <?php $cat = get_category(get_query_var('cat')); ?>
     <div class="sidebar-con-right">    
       <div class="sidebar-con-tit">
-        <?php $cat = get_category(get_query_var('cat')); ?>
-        <p>当前位置： <a href="../" title="网站首页">网站首页</a> &gt; <a href=../news/ >装修知识</a> > <a href=../news/news_5_1.html >风水指南</a></p>
+        <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
         <font class="this"><?php echo $cat->name; ?></font><span class="this"><?php echo ucwords($cat->slug); ?>&nbsp;</span>
       </div>
       <div class="sidebar-con-right-con">        

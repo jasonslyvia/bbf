@@ -60,7 +60,7 @@ gulp.task('copy-staff', function(){
 
 gulp.task('server', function(){
   browserSync({
-    proxy: 'bbf.com'
+    proxy: 'shuang.com'
   });
 });
 

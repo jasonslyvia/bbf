@@ -19,7 +19,7 @@ get_header();
 			<?php while ( have_posts() ) : the_post(); ?>
       <div class="sidebar-con-tit">
         <?php $cat = get_category(get_query_var('cat')); ?>
-        <p>当前位置： <a href="../" title="网站首页">网站首页</a> &gt; <a href=../news/ >装修知识</a> > <a href=../news/news_5_1.html >风水指南</a></p>
+        <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
         <font class="this"><?php the_title(); ?></font>
       </div>
       <div class="sidebar-con-right-con">
