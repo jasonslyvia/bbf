@@ -60,7 +60,7 @@ gulp.task('copy-staff', function(){
 
 gulp.task('server', function(){
   browserSync({
-    proxy: 'shuang.com'
+    proxy: 'bbf.com'
   });
 });
 
@@ -77,7 +77,7 @@ gulp.task('clearnWatchDir', function(){
 });
 
 gulp.task('replace', function(){
-  gulp.src('src/*.php')
+  gulp.src(['src/*.php', 'src/**/*.scss'])
   .pipe(replace('BBF_STYLE_DIR', '/wp-content/themes/bbf'))
   .pipe(gulp.dest(dir()));
 });

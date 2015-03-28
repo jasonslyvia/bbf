@@ -4,7 +4,6 @@
  *
  * @package bbf
  */
-
 error_reporting(E_ALL);
 
 function catch_that_image($width, $height) {
@@ -23,12 +22,73 @@ function catch_that_image($width, $height) {
   return $first_img;
 }
 
+/*****************************************\
+        处理各种action及filter
+\*****************************************/
+//自定义title
+add_action('wp_title', 'rw_title', 10, 3);
+function rw_title($title, $sep, $direction){
+    global $page, $paged;
+    if ($direction == 'right') {
+        $title .= get_bloginfo('name');
+    }
+    else{
+        $title = get_bloginfo('name').$title;
+    }
+    $desc = get_bloginfo('description', 'display');
+    if ($desc && (is_home() || is_front_page())) {
+        $title .= "{$sep}{$desc}";
+    }
+    if ($paged >=2 || $page >= 2) {
+        $title .= "{$sep}"."第".max($page, $paged)."页";
+    }
+    return $title;
+}
+
+add_action( 'after_setup_theme', 'custom_theme_setup' );
+function custom_theme_setup() {
+  add_theme_support('post-thumbnails', array( 'post' ));
+  add_image_size( 'gallery', 210, 160 );
+  add_image_size( 'thumb-list', 64, 64 );
+}
+
+function autoset_featured() {
+    global $post;
+    $already_has_thumb = has_post_thumbnail($post->ID);
+
+    if (!$already_has_thumb)  {
+      $attached_image = get_children( "post_parent=$post->ID&post_type=attachment&post_mime_type=image&numberposts=1" );
+      if ($attached_image) {
+        foreach ($attached_image as $attachment_id => $attachment) {
+          set_post_thumbnail($post->ID, $attachment_id);
+        }
+      }
+    }
+}
+add_action('the_post', 'autoset_featured');
+add_action('save_post', 'autoset_featured');
+add_action('draft_to_publish', 'autoset_featured');
+add_action('new_to_publish', 'autoset_featured');
+add_action('pending_to_publish', 'autoset_featured');
+add_action('future_to_publish', 'autoset_featured');
+
+
+//隐藏部分后台设置选项
+function remove_menus(){
+  remove_menu_page( 'index.php' );                  //Dashboard
+  remove_menu_page( 'themes.php');                 //Appearance
+  remove_menu_page( 'plugins.php' );                //Plugins
+  remove_menu_page( 'tools.php' );                  //Tools
+  remove_menu_page( 'edit-comments.php' );          //Comments
+}
+add_action( 'admin_menu', 'remove_menus' );
+
 function remove_wp_open_sans() {
     wp_deregister_style( 'open-sans' );
     wp_register_style( 'open-sans', false );
 }
-
 add_action('wp_enqueue_scripts', 'remove_wp_open_sans');
+
 function remove_open_sans() {
     wp_deregister_style( 'open-sans' );
     wp_register_style( 'open-sans', false );
@@ -36,8 +96,35 @@ function remove_open_sans() {
 }
 add_action( 'init', 'remove_open_sans' );
 
-function dimox_breadcrumbs() {
 
+function my_login_logo() { ?>
+    <style type="text/css">
+        .login h1 a {
+            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png);
+            background-size: auto;
+            width: auto;
+        }
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'my_login_logo' );
+
+function custom_colors() { ?>
+  <style type="text/css">
+      #wp-admin-bar-wp-logo {display: none;}
+      #wpfooter {visibility: hidden;}
+  </style>
+<?php }
+
+add_action('admin_head', 'custom_colors');
+
+add_action( 'admin_menu', 'register_my_custom_menu_page' );
+
+function register_my_custom_menu_page() {
+  add_menu_page( '管理轮播图', '轮播图', 'manage_options', 'edit.php?category_name=banner', '', '', 6 );
+}
+
+//面包屑导航
+function dimox_breadcrumbs() {
   /* === OPTIONS === */
   $text['home']     = '主页'; // text for the 'Home' link
   $text['category'] = '%s'; // text for a category page
@@ -56,6 +143,10 @@ function dimox_breadcrumbs() {
   /* === END OF OPTIONS === */
 
   global $post;
+  if ($post == null) {
+    return null;
+  }
+
   $home_link    = home_url('/');
   $link_before  = '<span typeof="v:Breadcrumb">';
   $link_after   = '</span>';
@@ -108,7 +199,7 @@ function dimox_breadcrumbs() {
         $post_type = get_post_type_object(get_post_type());
         $slug = $post_type->rewrite;
         printf($link, $home_link . $slug['slug'] . '/', $post_type->labels->singular_name);
-        if ($show_current == 1) echo $delimiter . $before . get_the_title() . $after;
+        if ($show_current == 1) echo $delimiter . $before . '正文' . $after;
       } else {
         $cat = get_the_category(); $cat = $cat[0];
         $cats = get_category_parents($cat, TRUE, $delimiter);
@@ -117,7 +208,7 @@ function dimox_breadcrumbs() {
         $cats = str_replace('</a>', '</a>' . $link_after, $cats);
         if ($show_title == 0) $cats = preg_replace('/ title="(.*?)"/', '', $cats);
         echo $cats;
-        if ($show_current == 1) echo $before . get_the_title() . $after;
+        if ($show_current == 1) echo $before . '正文' . $after;
       }
 
     } elseif ( !is_single() && !is_page() && get_post_type() != 'post' && !is_404() ) {
@@ -185,4 +276,4 @@ function dimox_breadcrumbs() {
     echo '</p><!-- .breadcrumbs -->';
 
   }
-} // end dimox_breadcrumbs()
+}

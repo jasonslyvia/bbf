@@ -149,7 +149,8 @@ $(document).ready(function(e) {
 	if(con_height1 > con_height) con_height=con_height1;
 	if(con_height2 > con_height) con_height=con_height2;
 	if(con_height3 > con_height) con_height=con_height3;
-	$('.main-con-top').height(Math.min(con_height, 165));
+	var finalHeight = Math.min(con_height, 165);
+	$('.main-con-top').height(finalHeight);
 
 
 	$('.sidebar-con-left-nav ul li div strong').click(function(){

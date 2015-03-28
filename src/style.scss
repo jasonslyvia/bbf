@@ -19,8 +19,101 @@ bbf is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, In
 @import './sass/common';
 @import './sass/legacy';
 
+// 宋体，华文细黑，Hiragino Mincho ProN，文泉驿点阵宋体
+$font-family-sans-serif:  "\5FAE\8F6F\96C5\9ED1", "\9ED1\4F53", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !default;
+// 微软雅黑，黑体，冬青黑体，文泉驿微米黑
+$font-family-serif:       "\5B8B\4F53", STHeiti, "Hiragino Mincho ProN", "WenQuanYi Bitmap Song", serif !default;
+// Default kai fonts for `<blockquote>`
+$font-family-kai:         Georgia, 'Times New Roman', Times, Kai, 'Kaiti SC', KaiTi, BiauKai, serif;
+// Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+$font-family-monospace:   Menlo, Consolas, "Liberation Mono", "Courier New", Courier, monospace !default;
+// Default num fonts for class="num"
+$font-family-num:         "Helvetica Neue", "Tahoma", Helvetica, Arial;
+
+body {
+  font-size: 12px;
+  font-family: $font-family-serif;
+}
+
+#web_logo img{
+  margin-top: 10px;
+}
+
+.sans-serif {
+  font-family: $font-family-sans-serif;
+}
+
+.serif {
+  font-family: $font-family-serif;
+}
+
+.icon-phone,
+.icon-phone-active,
+.icon-address,
+.icon-address-active {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url(./images/icons.png) no-repeat;
+}
+
+.icon-phone {
+  background-position: 0 -32px;
+}
+
+.icon-phone-active {
+  background-position: 0 0;
+}
+
+.icon-address {
+  background-position: 0 -96px;
+}
+
+.icon-address-active {
+  background-position: 0 -64px;
+}
+
+.tab {
+  float: right;
+
+  .tab-head {
+    a {
+      float: left;
+    }
+  }
+}
+
+#contact {
+  .title {
+    float: left;
+    padding: 4px 2px 0 12px;
+    height: 30px;
+    font-weight: 100;
+    line-height: 30px;
+    font-size: 16px;
+  }
+
+  .telephone {
+    display: block;
+    text-align: center;
+    font: bold 36px/1.5 Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #006833;
+    letter-spacing: 2px;
+    clear: both;
+  }
+
+  .address {
+    display: block;
+    clear: both;
+    padding-left: 12px;
+  }
+}
 
 .nav-box ul { padding-left:  0;}
+
+.nav-box li a {
+  font-family: $font-family-sans-serif;
+}
 
 .nav-box .product-item ul {
   z-index: 1;
@@ -83,6 +176,13 @@ bbf is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, In
       margin-bottom: 8px;
       font: 14px/1.6 "\5FAE\8F6F\96C5\9ED1", "\9ED1\4F53", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
       color: #006833;
+
+      a {
+        color: #006833;
+        padding: 0;
+        height: auto;
+        text-align: left;
+      }
     }
 
     .sub-link {
@@ -92,7 +192,83 @@ bbf is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, In
         padding: 0;
         text-align: left;
         color: #666;
+
+        &:hover {
+          color: #006833;
+        }
       }
     }
   }
+}
+
+.main-con-img {
+  background-position: top center;
+}
+
+.main-link {
+  padding: 0 0 0 10px;
+  margin-bottom: -10px;
+}
+
+.no-data {
+  text-align: center;
+}
+
+.sub-header {
+  height: 310px;
+  margin: 0 auto;
+  background: url(./images/sub-header.jpg) no-repeat center center;
+}
+
+.banmove a {
+  cursor: default;
+}
+
+.top-nav {
+  width: 1000px;
+}
+
+.editor {
+  h1, h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  h4 {
+    font-size: 14px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.sidebar-con-right-con {
+  padding-top: 0;
+}
+
+#showtext {
+  padding-top: 0;
+}
+
+.list .wp-post-image{
+  float: left;
+  margin-right: 10px;
+}
+
+.list .list-wrapper {
+  overflow: hidden;
+  zoom: 1;
+
+  a {
+    display: block;
+  }
+}
+
+#newslist li a{
+  font: 15px/1.2 $font-family-sans-serif;
 }

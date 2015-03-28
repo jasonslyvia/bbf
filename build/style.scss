@@ -1,0 +1,223 @@
+/*!
+Theme Name: bbf
+Theme URI: http://undefinedblog.com/
+Author: jasonslyvia, shuang
+Author URI: http://undefinedblog.com/
+Description: Yet another Wordpress theme
+Version: 1.0.0
+License: GNU General Public License v3
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: bbf
+Tags: Cooprate, Business
+
+This theme, like WordPress, is licensed under the GPLv3.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+bbf is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+*/
+
+@import './sass/common';
+@import './sass/legacy';
+
+#web_logo img{
+  margin-top: 10px;
+}
+
+.icon-phone,
+.icon-phone-active,
+.icon-address,
+.icon-address-active {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url(./images/icons.png) no-repeat;
+}
+
+.icon-phone {
+  background-position: 0 -32px;
+}
+
+.icon-phone-active {
+  background-position: 0 0;
+}
+
+.icon-address {
+  background-position: 0 -96px;
+}
+
+.icon-address-active {
+  background-position: 0 -64px;
+}
+
+.tab {
+  float: right;
+
+  .tab-head {
+    a {
+      float: left;
+    }
+  }
+}
+
+#contact {
+  .title {
+    float: left;
+    padding: 4px 2px 0 12px;
+    height: 30px;
+    font-weight: 100;
+    line-height: 30px;
+    font-size: 16px;
+  }
+
+  .telephone {
+    display: block;
+    text-align: center;
+    font: bold 36px/1.5 Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #006833;
+    letter-spacing: 2px;
+    clear: both;
+  }
+
+  .address {
+    display: block;
+    clear: both;
+    padding-left: 12px;
+  }
+}
+
+.nav-box ul { padding-left:  0;}
+
+.nav-box .product-item ul {
+  z-index: 1;
+}
+
+.nav-box .product-item ul li {
+  border-bottom: 5px #fff solid;
+}
+
+.nav-box .link-placeholder {
+  display: block;
+  text-align: right;
+}
+
+.nav-box ul li a:hover{
+  color: #fff;
+}
+
+.nav-box ul li .first:hover{
+  color:#006833;
+}
+
+.sidebar-con-left-con {
+  line-height: 1.4;
+
+  .title {
+    display: block;
+    margin-left: -14px;
+    padding-left: 8px;
+    border-left: 4px #ccc solid;
+    font-size: 14px;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+
+  div {
+    margin-bottom: 15px;
+  }
+}
+
+.product-menu {
+  position: absolute;
+  top: 40px;
+  left: -416px;
+  width: 500px;
+  height: 160px;
+  text-align: left;
+  background-color: #fff;
+  border-top: 3px solid #006833;
+  box-shadow: #555 0px 2px 4px;
+  -webkit-box-shadow: #555 0px 2px 4px;
+  -moz-box-shadow: #555 0px 2px 4px;
+  z-index: -1;
+
+  .product-section {
+    float: left;
+    margin: 10px 8px;
+
+    .title {
+      margin-bottom: 8px;
+      font: 14px/1.6 "\5FAE\8F6F\96C5\9ED1", "\9ED1\4F53", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+      color: #006833;
+
+      a {
+        color: #006833;
+        padding: 0;
+        height: auto;
+        text-align: left;
+      }
+    }
+
+    .sub-link {
+      a {
+        height: 20px;
+        line-height: 1.4;
+        padding: 0;
+        text-align: left;
+        color: #666;
+
+        &:hover {
+          color: #006833;
+        }
+      }
+    }
+  }
+}
+
+.main-con-img {
+  background-position: top center;
+}
+
+.main-link {
+  padding: 0 0 0 10px;
+  margin-bottom: -10px;
+}
+
+.no-data {
+  text-align: center;
+}
+
+.sub-header {
+  height: 310px;
+  margin: 0 auto;
+  background: url(./images/sub-header.jpg) no-repeat center center;
+}
+
+.banmove a {
+  cursor: default;
+}
+
+.top-nav {
+  width: 1000px;
+}
+
+.editor {
+  h1, h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  h4 {
+    font-size: 14px;
+  }
+}
+
+.sidebar-con-right-con {
+  padding-top: 0;
+}
+
+#showtext {
+  padding-top: 0;
+}

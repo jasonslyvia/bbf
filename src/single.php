@@ -18,7 +18,7 @@ get_header();
     <div class="sidebar-con-right">
     	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
       <div class="sidebar-con-tit">
-        <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>       
+        <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
         <font class="this"><?php the_title(); ?></font>
       </div>
       <div class="sidebar-con-right-con">
@@ -27,7 +27,9 @@ get_header();
           <div class="clear"></div>
         </div>
       </div>
-    <?php  endwhile; endif; ?>
+    <?php  endwhile; else: ?>
+    <p class="no-data">暂无相关内容</p>
+  <?php endif; ?>
     </div>
     <div class="clear"></div>
   </div>
