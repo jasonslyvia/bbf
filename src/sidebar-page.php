@@ -15,7 +15,7 @@
         <li <?php if($i == 1){ echo 'id="onefirst"'; } ?> <?php if($page->ID == $this_page){ echo 'class="navdown"'; }?>>
           <div>
             <strong <?php if($page->ID == $this_page){ echo 'class="navdown"'; }?>>&nbsp;</strong>
-            <a href="<?php echo $page->guid; ?>" title="<?php echo $page->post_title;?>"><?php echo mb_substr($page->post_title, 0, 12).'...';?></a>
+            <a href="<?php echo $page->guid; ?>" title="<?php echo $page->post_title;?>"><?php echo bbf_substr($page->post_title, 0, 12);?></a>
           </div>
         </li>
       <?php

@@ -35,6 +35,11 @@ body {
   font-family: $font-family-serif;
 }
 
+img{
+  -ms-interpolation-mode:bicubic;
+}
+
+
 #web_logo img{
   margin-top: 10px;
 }
@@ -229,21 +234,47 @@ body {
 }
 
 .editor {
+  line-height: normal;
+
   h1, h2 {
     font-size: 18px;
+    font-family: $font-family-sans-serif;
+    line-height: 1.8;
+    margin: 20px 0 10px;
   }
 
   h3 {
     font-size: 16px;
+    font-family: $font-family-sans-serif;
+    line-height: 1.6;
+    margin: 14px 0 6px;
   }
 
   h4 {
     font-size: 14px;
+    font-family: $font-family-sans-serif;
+    line-height: 1.4;
+    margin: 10px 0 4px;
+  }
+
+  p {
+    line-height: 1.4;
+    text-indent: 2em;
+    margin-bottom: 15px;
   }
 
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  .amap-tile {
+    max-width: none;
+  }
+
+  .aligncenter {
+    text-align: center;
+    margin: 0 auto;
   }
 }
 
@@ -266,9 +297,20 @@ body {
 
   a {
     display: block;
+    margin-bottom: 4px;
   }
 }
 
-#newslist li a{
-  font: 15px/1.2 $font-family-sans-serif;
+#newslist {
+  li {
+    margin-bottom: 20px;
+
+    p {
+      line-height: 1.6;
+    }
+
+    a {
+      font: 15px/1.2 $font-family-sans-serif;
+    }
+  }
 }

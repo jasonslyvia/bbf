@@ -40,7 +40,7 @@ get_header(); ?>
               <?php the_post_thumbnail('thumb-list'); ?>
               <div class="list-wrapper">
                 <a href='<?php the_permalink(); ?>' title='<?php the_title(); ?>' target='_self'><?php the_title(); ?></a>
-                <p><?php echo mb_substr(strip_tags(get_the_content()), 0, 100).'..' ?></p>
+                <p><?php echo mb_substr(strip_tags(get_the_content()), 0, 80).'..' ?></p>
               </div>
             </li>
             <?php } ?>

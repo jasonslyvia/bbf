@@ -22,6 +22,15 @@ function catch_that_image($width, $height) {
   return $first_img;
 }
 
+function bbf_substr($str, $start = 0, $end = 0) {
+  if (count($str) < $end - $start) {
+    return $str;
+  }
+  else {
+    return mb_substr($str, $start, $end).'...';
+  }
+}
+
 /*****************************************\
         处理各种action及filter
 \*****************************************/
@@ -45,11 +54,35 @@ function rw_title($title, $sep, $direction){
     return $title;
 }
 
-//注册菜单
-add_action( 'after_setup_theme', 'register_my_menu' );
-function register_my_menu() {
-  register_nav_menu( 'primary', '网站主菜单');
+add_action( 'after_setup_theme', 'custom_theme_setup' );
+function custom_theme_setup() {
+  add_theme_support('post-thumbnails', array( 'post' ));
+  add_image_size( 'gallery', 210, 160, true);
+  add_image_size( 'thumb-list', 64, 64 );
 }
+
+function autoset_featured() {
+    global $post;
+    $already_has_thumb = has_post_thumbnail($post->ID);
+
+    if (!$already_has_thumb)  {
+      $attached_image = get_children( "post_parent=$post->ID&post_type=attachment&post_mime_type=image&numberposts=1" );
+      if ($attached_image) {
+        foreach ($attached_image as $attachment_id => $attachment) {
+          set_post_thumbnail($post->ID, $attachment_id);
+        }
+      }
+    }
+}
+add_action('the_post', 'autoset_featured');
+add_action('save_post', 'autoset_featured');
+add_action('draft_to_publish', 'autoset_featured');
+add_action('new_to_publish', 'autoset_featured');
+add_action('pending_to_publish', 'autoset_featured');
+add_action('future_to_publish', 'autoset_featured');
+
+add_filter('show_admin_bar', '__return_false');
+
 
 //隐藏部分后台设置选项
 function remove_menus(){
@@ -100,7 +133,6 @@ add_action( 'admin_menu', 'register_my_custom_menu_page' );
 function register_my_custom_menu_page() {
   add_menu_page( '管理轮播图', '轮播图', 'manage_options', 'edit.php?category_name=banner', '', '', 6 );
 }
-
 
 //面包屑导航
 function dimox_breadcrumbs() {

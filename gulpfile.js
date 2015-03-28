@@ -6,7 +6,7 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var notify = require('gulp-notify');
 var del = require('del');
-var rsync = require('gulp-rsync');
+var scp = require('gulp-scp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var replace = require('gulp-replace');
@@ -51,14 +51,14 @@ gulp.task('script', function(){
 });
 
 gulp.task('copy-staff', function(){
-  gulp.src('src/images/**/*')
+  gulp.src(['src/images/**/*', 'src/screenshot.png'])
   .pipe(gulp.dest(isWatch ? 'watch/images' : 'build/images'));
 
   gulp.src(['src/sass/PIE.htc'])
   .pipe(gulp.dest(dir()));
 });
 
-gulp.task('server', function(){
+gulp.task('browserSync', function(){
   browserSync({
     proxy: 'bbf.com'
   });
@@ -89,7 +89,7 @@ function dir() {
 /*==========================================
 可用任务
 ==========================================*/
-gulp.task('watch', ['clearnWatchDir', 'setWatch', 'script', 'style', 'copy-staff', 'replace', 'server'], function(){
+gulp.task('watch', ['clearnWatchDir', 'setWatch', 'script', 'style', 'copy-staff', 'replace', 'browserSync'], function(){
   gulp.watch('src/**/*.scss', ['style']);
   gulp.watch('src/**/*.js', ['script']);
   gulp.watch('src/**/*.php', function(){
@@ -104,11 +104,12 @@ gulp.task('deploy', function(){
   gulp.start(['script', 'style', 'copy-staff', 'replace']);
 });
 
-gulp.task('deployTest', function(){
+gulp.task('server', function(){
   gulp.src('build/**')
-    .pipe(rsync({
-      hostname: 'aliyun',
-      destination: '/www/wordpress/wp-content/themes',
-      exclude: ['node_modules/']
+    .pipe(scp({
+      host: 'aliyun',
+      path: '/www/wordpress/wp-content/themes/bbf',
+      port: 7260,
+      exclude: ['node_modules/', 'sass/']
     }));
 });

@@ -1,6 +1,6 @@
 <div class="sidebar-con-left">
   <div class="sidebar-con-tit">
-    <div class="sidebar-con-box"><font class="this">相关内容</font><span class="this">Relevant&nbsp;</span></div>
+    <div class="sidebar-con-box"><font class="this sans-serif">相关内容</font><span class="this">Relevant&nbsp;</span></div>
   </div>
   <div class="sidebar-con-left-nav">
     <ul>
@@ -20,7 +20,7 @@
         <li <?php if($i == 1){ echo 'id="onefirst"'; } ?> <?php if(get_the_ID() == $this_post){ echo 'class="navdown"'; }?>>
           <div>
             <strong <?php if(get_the_ID() == $this_post){ echo 'class="navdown"'; }?>>&nbsp;</strong>
-            <a href="<?php the_permalink(); ?>" title="<?php the_title();?>"><?php echo mb_substr(get_the_title(), 0, 10);?></a>
+            <a href="<?php the_permalink(); ?>" title="<?php the_title();?>"><?php echo bbf_substr(get_the_title(), 0, 12);?></a>
           </div>
         </li>
       <?php

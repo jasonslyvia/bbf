@@ -22,6 +22,15 @@ function catch_that_image($width, $height) {
   return $first_img;
 }
 
+function bbf_substr($str, $start = 0, $end = 0) {
+  if (count($str) < $end - $start) {
+    return $str;
+  }
+  else {
+    return mb_substr($str, $start, $end).'...';
+  }
+}
+
 /*****************************************\
         处理各种action及filter
 \*****************************************/
@@ -48,7 +57,7 @@ function rw_title($title, $sep, $direction){
 add_action( 'after_setup_theme', 'custom_theme_setup' );
 function custom_theme_setup() {
   add_theme_support('post-thumbnails', array( 'post' ));
-  add_image_size( 'gallery', 210, 160 );
+  add_image_size( 'gallery', 210, 160, true);
   add_image_size( 'thumb-list', 64, 64 );
 }
 
@@ -71,6 +80,8 @@ add_action('draft_to_publish', 'autoset_featured');
 add_action('new_to_publish', 'autoset_featured');
 add_action('pending_to_publish', 'autoset_featured');
 add_action('future_to_publish', 'autoset_featured');
+
+add_filter('show_admin_bar', '__return_false');
 
 
 //隐藏部分后台设置选项

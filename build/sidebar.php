@@ -10,7 +10,7 @@
 <div class="sidebar-con-left">
 	<?php $cat = get_category(get_query_var('cat')); ?>
 	<div class="sidebar-con-tit">
-	    <div class="sidebar-con-box"><font class="this"><?php echo $cat->name; ?></font><span class="this"><?php echo ucwords($cat->slug); ?>&nbsp;</span></div>
+	    <div class="sidebar-con-box"><font class="this sans-serif"><?php echo $cat->name; ?></font><span class="this"><?php echo ucwords($cat->slug); ?>&nbsp;</span></div>
 	</div>
 	<div class="sidebar-con-left-nav">
 	    <ul>

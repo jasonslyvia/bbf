@@ -37,8 +37,11 @@ get_header(); ?>
               ?>
             <li class='list <?php if ($i == 1): echo 'top'; endif; ?>'>
               <span><?php the_time('Y-m-d'); ?></span>
-              <a href='<?php the_permalink(); ?>' title='<?php the_title(); ?>' target='_self'><?php the_title(); ?></a>
-              <p><?php echo mb_substr(get_the_content(), 0, 30).'..' ?></p>
+              <?php the_post_thumbnail('thumb-list'); ?>
+              <div class="list-wrapper">
+                <a href='<?php the_permalink(); ?>' title='<?php the_title(); ?>' target='_self'><?php the_title(); ?></a>
+                <p><?php echo mb_substr(strip_tags(get_the_content()), 0, 80).'..' ?></p>
+              </div>
             </li>
             <?php } ?>
           </ul>

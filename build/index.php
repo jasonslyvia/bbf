@@ -123,7 +123,7 @@ get_header(); ?>
                 $query->the_post();
               ?>
               <a href="<?php the_permalink(); ?>" title="<?php the_title();?>" target="_blank">
-                <img src="<?php echo catch_that_image(210, 160); ?>" width="210" height="160" title="<?php the_title();?>" alt="<?php the_title();?>" />
+                <?php the_post_thumbnail( 'gallery' );  ?>
                 <h3><?php the_title();?></h3>
               </a>
               <?php } wp_reset_postdata(); ?>
