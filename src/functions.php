@@ -27,7 +27,7 @@ function bbf_substr($str, $start = 0, $end = 0) {
     return $str;
   }
   else {
-    return (mb_substr($str, $start, $end).'...');
+    return (mb_substr($str, $start, $end));
   }
 }
 
