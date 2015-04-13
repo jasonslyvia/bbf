@@ -5,3 +5,4 @@ sitemap.xml.gz
 watch/
 .DS_Store
 node_modules/
+.ftpconfig

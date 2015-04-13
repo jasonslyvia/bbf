@@ -30,7 +30,7 @@
   <div class="header-top">
     <div class="top-nav">
 			<span class="i"></span>
-			<a href='/wp-login.php'>登录</a> | <a href='/wp-login.php?action=register'>注册</a>
+			<a href='/wp-login.php'>企业邮箱登录</a> | <a href='/wp-login.php?action=register'>注册</a>
 		</div>
   </div>
 

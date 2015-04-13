@@ -31,6 +31,10 @@ function bbf_substr($str, $start = 0, $end = 0) {
   }
 }
 
+function bbf_strip($content) {
+  return preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $content);
+}
+
 /*****************************************\
         处理各种action及filter
 \*****************************************/

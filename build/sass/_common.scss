@@ -74,7 +74,13 @@ a:hover{color:#00873b;}
     .pro-move{width:40000px; height:100%; margin:0;}
      .pro-move a{float:left; background:#fff; height:100%; margin-right:20px; position:relative; overflow:hidden; _width:expression(this.clientWidth+'px');}
 	  .pro-move a h3{width:100%; height:40px; font-size:12px; font-weight:100; line-height:40px; position:absolute; text-align:center; background:#111; left:0; bottom:0;}
-	  .pro-move a h3{color:#fff; letter-spacing:1px; -moz-opacity:0.7; -khtml-opacity:0.7; opacity:0.7; filter:alpha(opacity=70);}
+	  .pro-move a h3{color:#fff; letter-spacing:1px;
+      background: transparent; /* Feedback color */
+      background: rgba(0, 0, 0, .5); /* For modern browsers */
+      -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1, StartColorStr='#7F000000', EndColorStr='#7F000000')"; /* For IE8 */
+      filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#7F000000', EndColorStr='#7F000000'); /* For IE6,IE7 */
+      zoom: 1!important; /* Trigger hasLayout */
+    }
   .main-link{padding:10px 0 10px 10px;}
    .main-link ul.main-link-img{float:left; width:100%; padding:0; margin:0;}
     .main-link ul.main-link-img li{float:left; padding:0 15px 0 5px; margin:0;}

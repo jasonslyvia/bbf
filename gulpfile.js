@@ -13,6 +13,9 @@ var replace = require('gulp-replace');
 var sass = require('gulp-sass');
 var cssmin = require('gulp-minify-css');
 var gif = require('gulp-if');
+var ftp = require('vinyl-ftp');
+var util = require('gulp-util');
+var ftpConfig = require('./.ftpconfig');
 
 
 
@@ -105,11 +108,8 @@ gulp.task('deploy', function(){
 });
 
 gulp.task('server', function(){
-  gulp.src('build/**')
-    .pipe(scp({
-      host: 'aliyun',
-      path: '/www/wordpress/wp-content/themes/bbf',
-      port: 7260,
-      exclude: ['node_modules/', 'sass/']
-    }));
+  var conn = ftp.create(ftpConfig);
+
+  return gulp.src( ['build/**/*.php', 'build/**/*.css', 'build/**/*.css'], { base: 'build', buffer: false } )
+      .pipe( conn.dest( '/htdocs/wp-content/themes/bbf' ) );
 });

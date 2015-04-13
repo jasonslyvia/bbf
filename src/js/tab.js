@@ -21,7 +21,7 @@ $(function(){
     }
     else {
       $title.text('公司地址');
-      $content.empty().append('<span class="address">北京市通州区永乐经济开发区恒业8街2号（永乐产业园28号厂房）</span>');
+      $content.empty().append('<span class="address">北京市通州区永乐经济开发区恒业八街 6 号院 9 幢</span>');
     }
 
     return false;
