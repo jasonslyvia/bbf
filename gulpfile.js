@@ -110,6 +110,6 @@ gulp.task('deploy', function(){
 gulp.task('server', function(){
   var conn = ftp.create(ftpConfig);
 
-  return gulp.src( ['build/**/*.php', 'build/**/*.css', 'build/**/*.css'], { base: 'build', buffer: false } )
+  return gulp.src( ['build/**/*.php', 'build/**/*.css', 'build/**/*.css', 'build/bundle.js'], { base: 'build', buffer: false } )
       .pipe( conn.dest( '/htdocs/wp-content/themes/bbf' ) );
 });
