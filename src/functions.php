@@ -292,3 +292,32 @@ function dimox_breadcrumbs() {
 
   }
 }
+
+
+//添加自定义配置页
+add_action('admin_menu', 'add_global_custom_options');
+function add_global_custom_options() {
+  add_options_page('公司信息设置', '公司信息', 'manage_options', 'functions', 'global_custom_options');
+}
+
+function global_custom_options()
+{
+?>
+  <div class="wrap">
+    <h2>公司信息设置</h2>
+    <form method="post" action="options.php">
+      <?php wp_nonce_field('update-options') ?>
+      <p><strong>主要联系电话</strong>（显示在首页）<br />
+          <input type="text" name="primary_phone_num" size="45" value="<?php echo get_option('primary_phone_num'); ?>" />
+      </p>
+      <p><strong>主要联系地址</strong>（显示在首页）<br />
+          <input type="text" name="primary_address" value="<?php echo get_option('primary_address'); ?>" />
+      </p>
+
+      <p><input type="submit" name="Submit" value="更新" /></p>
+      <input type="hidden" name="action" value="update" />
+      <input type="hidden" name="page_options" value="primary_phone_num, primary_address" />
+    </form>
+  </div>
+<?php
+}
