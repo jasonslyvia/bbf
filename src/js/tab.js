@@ -14,14 +14,15 @@ $(function(){
 
     var tab = $tab.data('tab');
     var $title = $tab.closest('.main-con').find('.title');
-    var $content = $tab.closest('.main-con').find('.tab-content');
     if (tab == 0) {
       $title.text('联系电话');
-      $content.empty().append('<span class="telephone">+86 010 63714176</span>');
+      $('[data-tabtype="phone"]').addClass('tab-content-active');
+      $('[data-tabtype="address"]').removeClass('tab-content-active');
     }
     else {
       $title.text('公司地址');
-      $content.empty().append('<span class="address">北京市通州区永乐经济开发区恒业八街 6 号院 9 幢</span>');
+      $('[data-tabtype="phone"]').removeClass('tab-content-active');
+      $('[data-tabtype="address"]').addClass('tab-content-active');
     }
 
     return false;

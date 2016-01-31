@@ -96,8 +96,11 @@ get_header(); ?>
           <div class="clear"></div>
         </div>
       </div>
-      <div class="tab-content">
-        <span class="telephone">+86 010 63714187</span>
+      <div class="tab-content tab-content-active" data-tabtype="phone">
+        <span class="telephone"><?php echo get_option('primary_phone_num'); ?></span>
+      </div>
+      <div class="tab-content" data-tabtype="address">
+        <span class="address"><?php echo get_option('primary_address'); ?></span>
       </div>
     </div>
   </div>

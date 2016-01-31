@@ -95,6 +95,14 @@ img{
   }
 }
 
+.tab-content {
+  display: none;
+}
+
+.tab-content-active {
+  display: block;
+}
+
 #contact {
   .title {
     float: left;
